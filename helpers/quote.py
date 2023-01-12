@@ -45,7 +45,7 @@ def get_random_tag_quote():
     # Extract the quotes from the HTML
     all_tags = soup.select(".greyText a")
     random_href = random.choice(all_tags).attrs["href"]
-    tag_url = QUOTES_URL + "/".join(random_href.split("/")[1:])
+    tag_url = QUOTES_URL + random_href.replace("/quotes", "")
 
     # Make a request to the website to get the quotes for the current page
     page = random.randint(1, 100)

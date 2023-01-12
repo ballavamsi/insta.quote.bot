@@ -40,6 +40,8 @@ def post_to_instagram(quote, filename):
             logger.info("login failed")
             return
 
+        global_browser.get("https://www.instagram.com/random/pagenotfound")
+
         action_to_control("click new post button",
                           '//*[@aria-label="New post"]', "XPATH", "CLICKABILITY", "click", "", 5)
 
