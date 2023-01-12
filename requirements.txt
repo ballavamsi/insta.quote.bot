@@ -1,0 +1,12 @@
+beautifulsoup4
+Pillow
+requests
+textblob
+APScheduler
+better_profanity
+selenium
+webdriver-manager
+#pywin32
+python3-xlib
+langdetect
+numpy
