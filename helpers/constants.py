@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-GOODREADS_QUOTES_URL = os.getenv('GOODREADS_QUOTES_URL')
+QUOTES_URL = os.getenv('QUOTES_URL')
 COLORNAMES_URL = os.getenv('COLORNAMES_URL')
 MAX_API_PAGENO = int(os.getenv('MAX_API_PAGENO'))
 FONT_FAMILY_PATH = os.getenv('FONT_FAMILY_PATH')

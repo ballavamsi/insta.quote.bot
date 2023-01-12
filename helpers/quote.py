@@ -14,7 +14,7 @@ def get_quote():
     return get_random_tag_quote()
     page = random.randint(1, MAX_API_PAGENO)
     # Make a request to the website to get the quotes for the current page
-    response = requests.get(GOODREADS_QUOTES_URL, params={"page": page})
+    response = requests.get(QUOTES_URL, params={"page": page})
     return get_quote_from_page(response.text)
 
 
@@ -35,7 +35,8 @@ def get_quote_from_page(html):
 
 def get_random_tag_quote():
     # Make a request to the website to get the quotes for the current page
-    response = requests.get("https://www.goodreads.com/quotes")
+
+    response = requests.get(QUOTES_URL)
     html = response.text
 
     # Parse the HTML using Beautiful Soup
@@ -43,8 +44,8 @@ def get_random_tag_quote():
 
     # Extract the quotes from the HTML
     all_tags = soup.select(".greyText a")
-    tag_url = "https://www.goodreads.com" + \
-        random.choice(all_tags).attrs["href"]
+    random_href = random.choice(all_tags).attrs["href"]
+    tag_url = QUOTES_URL + "/".join(random_href.split("/")[1:])
 
     # Make a request to the website to get the quotes for the current page
     page = random.randint(1, 100)
