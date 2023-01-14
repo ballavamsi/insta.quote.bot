@@ -101,26 +101,30 @@ def create_gradient_image0(colors, size):
 
     colors_are_complementary = False
 
+    logger.debug(f"Color1: {color1}")
     r1, g1, b1 = tuple(int(color1[i:i+2], 16) for i in (1, 3, 5))
     if TWO_COLOR_TONE:
         if len(colors) == 0:
             colors.append("#0c0c0c")
             colors.append("#ffffff")
         color2 = random.choice(colors)
+        logger.debug(f"Checking Color2: {color2}")
 
         # Convert the hexcode colors to RGB
         r2, g2, b2 = tuple(int(color2[i:i+2], 16) for i in (1, 3, 5))
 
         colors_are_complementary = are_colors_complementary(
-            (r1, g1, b1), (r2, g2, b2), 75)
+            (r1, g1, b1), (r2, g2, b2), int(os.getenv("COMPLEMENTARY_THRESHOLD", 75)))
         while not colors_are_complementary and len(colors) > 0:
             colors.remove(color2)
             color2 = random.choice(colors)
+            logger.debug(f"Checking Color2: {color2}")
             r2, g2, b2 = tuple(int(color2[i:i+2], 16) for i in (1, 3, 5))
             colors_are_complementary = are_colors_complementary(
-                (r1, g1, b1), (r2, g2, b2), 75)
+                (r1, g1, b1), (r2, g2, b2), int(os.getenv("COMPLEMENTARY_THRESHOLD", 75)))
 
     if not colors_are_complementary or not TWO_COLOR_TONE:
+        logger.info("Colors are not complementary so using a single color")
         r2, g2, b2 = r1, g1, b1
 
     # Create a gradient image with the two colors

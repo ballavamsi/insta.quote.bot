@@ -91,8 +91,8 @@ def insert_quote_to_db(quote):
     cursor = conn.cursor()
 
     # Insert the quote into the database
-    cursor.execute("INSERT INTO quotes VALUES ('?')",
-                   (quote.replace("'", "''")))
+    cursor.execute("INSERT INTO quotes VALUES (?)",
+                   (quote,))
     conn.commit()
     logger.info("Inserted quote to db")
 

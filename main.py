@@ -47,13 +47,16 @@ def scheduled_job():
     filename = generate_image(quote, sentiment)
     logger.info("posting to instagram")
     post_to_instagram(quote, filename)
+    logger.info("inserting quote to db")
     insert_quote_to_db(quote)
     logger.info("completed the process")
 
 
 if __name__ == "__main__":
-    # scheduled_job()
+    if os.getenv("RUN_ONCE") == "1":
+        scheduled_job()
     scheduler = BlockingScheduler(timezone="Asia/Kolkata")
-    scheduler.add_job(scheduled_job, 'interval', hours=24,
-                      start_date='2023-01-01 00:00:00')
+    scheduler.add_job(scheduled_job, 'interval', hours=int(os.getenv("POST_FREQUENCY_HOURS")),
+                      start_date='2023-01-01 00:00:00',
+                      misfire_grace_time=60*60*2)
     scheduler.start()

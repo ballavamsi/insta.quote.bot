@@ -49,10 +49,9 @@ def post_to_instagram(quote, filename):
         time.sleep(5)
 
         logger.info(filename)
-        file_inputs = global_browser.find_elements(
-            By.XPATH, "//input[@type='file']")
-        for file_input in file_inputs:
-            file_input.send_keys(filename)
+        action_to_control("select image",
+                          "//input[@multiple]",
+                          "XPATH", "PRESENCE", "send_keys", filename, 5)
 
         action_to_control("click next button",
                           '//button[text()="Next"]',
@@ -74,6 +73,6 @@ def post_to_instagram(quote, filename):
         traceback.print_exc()
         logger.info(e)
     finally:
-        time.sleep(60)
+        time.sleep(10)
         logger.info("Completed")
         global_browser.quit()
