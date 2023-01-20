@@ -48,6 +48,11 @@ def getBrowser():
     return global_browser
 
 
+def clearBrowser():
+    global global_browser
+    global_browser = None
+
+
 def navigateURL(url):
     global_browser.get(url)
 

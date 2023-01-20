@@ -73,6 +73,8 @@ def post_to_instagram(quote, filename):
         traceback.print_exc()
         logger.info(e)
     finally:
+
         time.sleep(10)
         logger.info("Completed")
         global_browser.quit()
+        clearBrowser()
