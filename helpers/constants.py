@@ -2,6 +2,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+def str2bool(v):
+  return v.lower() in ("yes", "true", "t", "1")
+
 QUOTES_URL = os.getenv('QUOTES_URL')
 COLORNAMES_URL = os.getenv('COLORNAMES_URL')
 MAX_API_PAGENO = int(os.getenv('MAX_API_PAGENO'))
@@ -14,8 +17,8 @@ IMAGE_HEIGHT = int(os.getenv('IMAGE_HEIGHT'))
 CIRCLES = os.getenv('CIRCLES')
 BLUR_PERCENT = int(os.getenv('BLUR_PERCENT'))
 QUOTES_DB = os.getenv('QUOTES_DB')
-TWO_COLOR_TONE = os.getenv('TWO_COLOR_TONE')
-LINES_EQUAL_SPACES = os.getenv('LINES_EQUAL_SPACES')
+TWO_COLOR_TONE = str2bool(os.getenv('TWO_COLOR_TONE'))
+LINES_EQUAL_SPACES = str2bool(os.getenv('LINES_EQUAL_SPACES'))
 FONT_SIZE = int(os.getenv('FONT_SIZE'))
 FONT_FAMILY = os.getenv('FONT_FAMILY')
 COLORS = os.getenv('COLORS').split(',')

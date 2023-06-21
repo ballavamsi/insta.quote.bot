@@ -54,11 +54,13 @@ def post_to_instagram(quote, filename):
                           "XPATH", "PRESENCE", "send_keys", filename, 5)
 
         action_to_control("click next button",
-                          '//button[text()="Next"]',
+                          '//div[@role="button"][text()="Next"]',
+                          # '//button[text()="Next"]',
                           "XPATH", "CLICKABILITY", "click", "", 5)
 
         action_to_control("click next button",
-                          '//button[text()="Next"]',
+                          '//div[@role="button"][text()="Next"]',
+                          # '//button[text()="Next"]',
                           "XPATH", "CLICKABILITY", "click", "", 5)
 
         action_to_control("send keys to textarea",
@@ -66,8 +68,21 @@ def post_to_instagram(quote, filename):
                           "XPATH", "CLICKABILITY", "send_keys", f"{quote}\n\n{INSTAGRAM_POST}", 5)
 
         action_to_control("click on share button",
-                          '//*[contains(text(),"Share")]',
+                          '//div[@role="button"][text()="Share"]',
+                          # '//*[contains(text(),"Share")]',
                           "XPATH", "CLICKABILITY", "click", "", 5)
+
+        action_to_control("click on svg aria-label close",
+                          '//*[@aria-label="Close"]',
+                          "XPATH", "CLICKABILITY", "click", "", 5)
+
+        action_to_control("click on settings button",
+                          '//*[@aria-label="Settings"]', "XPATH", "CLICKABILITY", "click", "", 5)
+
+        action_to_control("Click on logout button",
+                          '//*[contains(text(),"Log Out")]',
+                          "XPATH", "PRESENCE", "click", "", 5)
+
         logger.info("posted to instagram")
     except Exception as e:
         traceback.print_exc()
