@@ -1,11 +1,11 @@
 beautifulsoup4
-Pillow
+Pillow==9.5.0
 requests
 textblob
 APScheduler
 better_profanity
-selenium
-webdriver-manager
+selenium==4.14.0
+webdriver-manager==4.0.0
 #pywin32
 python3-xlib
 langdetect

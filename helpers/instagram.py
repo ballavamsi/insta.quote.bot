@@ -42,8 +42,16 @@ def post_to_instagram(quote, filename):
 
         global_browser.get("https://www.instagram.com/random/pagenotfound")
 
+        # action_to_control("click new post button",
+        #                   '//*[@aria-label="New post"]', "XPATH", "CLICKABILITY", "click", "", 5)
+
+        action_to_control("click new create button",
+                            '//span[text()="Create"]',
+                            "XPATH", "CLICKABILITY", "click", "", 5)
+        
         action_to_control("click new post button",
-                          '//*[@aria-label="New post"]', "XPATH", "CLICKABILITY", "click", "", 5)
+                            '//span[text()="Post"]',
+                            "XPATH", "CLICKABILITY", "click", "", 5)
 
         # select image here
         time.sleep(5)
@@ -80,7 +88,7 @@ def post_to_instagram(quote, filename):
                           '//*[@aria-label="Settings"]', "XPATH", "CLICKABILITY", "click", "", 5)
 
         action_to_control("Click on logout button",
-                          '//*[contains(text(),"Log Out")]',
+                          '//*[contains(text(),"Log out")]',
                           "XPATH", "PRESENCE", "click", "", 5)
 
         logger.info("posted to instagram")
